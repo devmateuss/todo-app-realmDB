@@ -47,11 +47,11 @@ function screens() {
     setList(list);
   }
 
-  async function todoDelete(item) {
+  async function todoDelete(id) {
     const realm = await getRealm();
 
     realm.write(() => {
-      realm.delete(realm.objectForPrimaryKey('TodoItem', item.id));
+      realm.delete(realm.objectForPrimaryKey('TodoItem', id));
     });
 
     todoList();
@@ -88,13 +88,7 @@ function screens() {
               size={35}
               color={'red'}
               onPress={() => {
-                const data = {
-                  id: item.id,
-                  description: item.description,
-                  date: item.date,
-                };
-
-                todoDelete(data);
+                todoDelete(item.id);
               }}
             />
           </ListItem>
@@ -108,27 +102,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-  },
-  containerInput: {
-    marginTop: 50,
-    marginBottom: 10,
-    flexDirection: 'row',
-    alignItems: 'center',
-    shadowColor: '#919191',
-    elevation: 5,
-    shadowOffset: {width: -1, height: 1},
-    shadowOpacity: 1,
-    backgroundColor: '#fff',
-    marginHorizontal: 10,
-  },
-  textInput: {
-    flex: 1,
-    height: 30,
-    backgroundColor: '#fff',
-    margin: 5,
-    fontSize: 20,
-    paddingLeft: 10,
-    fontWeight: '500',
   },
 });
 

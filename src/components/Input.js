@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, TextInput, StyleSheet} from 'react-native';
+import {View, TextInput, StyleSheet, Platform} from 'react-native';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -26,7 +26,7 @@ export function Input({value, onPress, onChangeText}) {
 
 const styles = StyleSheet.create({
   containerInput: {
-    marginTop: 50,
+    marginTop: Platform.OS == 'ios' ? 50 : 0,
     marginBottom: 10,
     flexDirection: 'row',
     alignItems: 'center',
